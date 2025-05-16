@@ -1,0 +1,17 @@
+name: Test Reusable Action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-repo-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Fetch PR Data Action
+        uses: shreepadmavathi/code-review-analytics/.github/actions/fetch-pr-data-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo: shreepadmavathi/code-review-analytics
