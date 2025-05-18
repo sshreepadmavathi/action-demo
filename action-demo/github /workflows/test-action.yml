@@ -1,18 +1,18 @@
-name: Run Fetch PR Data
+name: Test Fetch PR Data
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger from Actions tab
 
 jobs:
-  fetch-pr-data:
+  fetch-prs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Custom Action to Fetch PR Data
-        uses: ./github/actions/fetch-pr-data-action
+      - name: Run custom PR fetch action
+        uses: ./.github/actions/fetch-pr-data-action
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repo: sshreepadmavathi/action-demo  # Replace with any target repo if testing
+          repo: shreepadmavathi/code-review-analytics  # Replace with your target repo
