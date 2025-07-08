@@ -11,6 +11,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pylint
+
+      - name: Lint fetch_pr_data.py
+        run: |
+          echo "🔍 Running pylint..."
+          pylint .github/actions/fetch-pr-data-action/fetch_pr_data.py || true
+
       - name: Use Fetch PR Data Action
         uses: ./.github/actions/fetch-pr-data-action
         with:
